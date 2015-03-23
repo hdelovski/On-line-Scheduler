@@ -1,0 +1,2 @@
+c:\users\borche\documents\visual studio 2013\Projects\On-line Scheduler\On-line Scheduler\On-line Scheduler.HTMLClient\bin\Debug\LSResourceGeneratorsTask.mcs
+c:\users\borche\documents\visual studio 2013\Projects\On-line Scheduler\On-line Scheduler\On-line Scheduler.HTMLClient\bin\Debug\LSClientCodeGeneratorsTask.mcs

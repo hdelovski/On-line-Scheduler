@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{581633EB-B896-402F-8E60-36F3DA191C85}") = "On-line Scheduler", "On-line Scheduler\On-line Scheduler.lsxtproj", "{971BE154-0149-43A7-9182-A0C28147B2A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "On-line Scheduler.Server", "On-line Scheduler\On-line Scheduler.Server\On-line Scheduler.Server.csproj", "{785BA234-E759-486F-B997-64A9748556EF}"
+EndProject
+Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "On-line Scheduler.HTMLClient", "On-line Scheduler\On-line Scheduler.HTMLClient\On-line Scheduler.HTMLClient.jsproj", "{ECB52E0A-BB85-4E53-B763-6A0C6D08ACF7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{971BE154-0149-43A7-9182-A0C28147B2A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{971BE154-0149-43A7-9182-A0C28147B2A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{971BE154-0149-43A7-9182-A0C28147B2A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{971BE154-0149-43A7-9182-A0C28147B2A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{785BA234-E759-486F-B997-64A9748556EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{785BA234-E759-486F-B997-64A9748556EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{785BA234-E759-486F-B997-64A9748556EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{785BA234-E759-486F-B997-64A9748556EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECB52E0A-BB85-4E53-B763-6A0C6D08ACF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECB52E0A-BB85-4E53-B763-6A0C6D08ACF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECB52E0A-BB85-4E53-B763-6A0C6D08ACF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECB52E0A-BB85-4E53-B763-6A0C6D08ACF7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="Izbrani_predmeti">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <EntityProperty
+        Name="tekoven_semestar"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <KeyProperty
+        Name="ID_izbraniPredmeti"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <NavigationProperty
+        Name="Predmet"
+        Association="FK_Izbrani_predmeti_Predmet"
+        FromEnd="Izbrani_predmeti"
+        ToEnd="Predmet" />
+      <NavigationProperty
+        Name="Student"
+        Association="FK_Izbrani_predmeti_Student"
+        FromEnd="Izbrani_predmeti"
+        ToEnd="Student" />
+    </EntityType.Properties>
+  </EntityType>
+  <EntityContainer
+    Name="On_line_rasporedData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Izbrani_predmetis"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Izbrani_predmeti" />
+    <QueryOperation
+      Name="Izbrani_predmetis_Single"
+      ReturnType="Izbrani_predmeti">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="ID_izbraniPredmeti" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="ID_izbraniPredmeti" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Izbrani_predmetis" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="ID_izbraniPredmeti"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'ID_izbraniPredmeti' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Izbrani_predmetis_SingleOrDefault"
+      ReturnType="Izbrani_predmeti">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="ID_izbraniPredmeti" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="ID_izbraniPredmeti" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Izbrani_predmetis" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="ID_izbraniPredmeti"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'ID_izbraniPredmeti' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="On_line_rasporedDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Izbrani_predmetis">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Izbrani_predmeti" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="tekoven_semestar"
+          Nullable="True"
+          Type="varchar"
+          Property="Izbrani_predmeti/Properties[tekoven_semestar]" />
+        <SsdlProperty
+          Name="ID_izbraniPredmeti"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="Izbrani_predmeti/Properties[ID_izbraniPredmeti]" />
+        <SsdlForeignKeyProperty
+          MaxLength="50"
+          Name="ID_predmet"
+          Nullable="False"
+          Type="nvarchar"
+          PropertyName="ID_predmet" />
+        <SsdlForeignKeyProperty
+          MaxLength="20"
+          Name="Br_indeks"
+          Nullable="False"
+          Type="nvarchar"
+          PropertyName="Br_indeks" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+  </DataService>
+</ServiceApplication>

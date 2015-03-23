@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="Predmet">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="ID_predmet"
+        PropertyType=":String">
+        <KeyProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="50" />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="Ime"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Status"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Nasoka"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="FlagPredmet"
+        PropertyType=":Boolean?">
+        <EntityProperty.Attributes>
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="Aktivnosts"
+        Association="FK_Aktivnost_Predmet"
+        FromEnd="Predmet"
+        ToEnd="Aktivnost" />
+      <NavigationProperty
+        Name="Izbrani_predmetis"
+        Association="FK_Izbrani_predmeti_Predmet"
+        FromEnd="Predmet"
+        ToEnd="Izbrani_predmeti" />
+      <NavigationProperty
+        Name="Profesor"
+        Association="FK_Predmet_Profesor"
+        FromEnd="Predmet"
+        ToEnd="Profesor" />
+      <NavigationProperty
+        Name="Semestar"
+        Association="FK_Predmet_Semestar"
+        FromEnd="Predmet"
+        ToEnd="Semestar" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_Aktivnost_Predmet">
+    <AssociationEnd
+      Name="Predmet"
+      Multiplicity="One"
+      EntityType="Predmet">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Aktivnost"
+      Multiplicity="Many"
+      EntityType="Aktivnost" />
+  </Association>
+  <Association
+    Name="FK_Izbrani_predmeti_Predmet">
+    <AssociationEnd
+      Name="Predmet"
+      Multiplicity="One"
+      EntityType="Predmet">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Izbrani_predmeti"
+      Multiplicity="Many"
+      EntityType="Izbrani_predmeti" />
+  </Association>
+  <EntityContainer
+    Name="On_line_rasporedData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Predmets"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Predmet" />
+    <AssociationSet
+      Name="FK_Aktivnost_Predmet"
+      Association="FK_Aktivnost_Predmet">
+      <AssociationSetEnd
+        Name="Predmet"
+        EntitySet="Predmets" />
+      <AssociationSetEnd
+        Name="Aktivnost"
+        EntitySet="Aktivnosts" />
+    </AssociationSet>
+    <AssociationSet
+      Name="FK_Izbrani_predmeti_Predmet"
+      Association="FK_Izbrani_predmeti_Predmet">
+      <AssociationSetEnd
+        Name="Predmet"
+        EntitySet="Predmets" />
+      <AssociationSetEnd
+        Name="Izbrani_predmeti"
+        EntitySet="Izbrani_predmetis" />
+    </AssociationSet>
+    <QueryOperation
+      Name="Predmets_Single"
+      ReturnType="Predmet">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="ID_predmet" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="ID_predmet" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Predmets" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="ID_predmet"
+        ParameterType="Microsoft.LightSwitch:String?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'ID_predmet' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Predmets_SingleOrDefault"
+      ReturnType="Predmet">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="ID_predmet" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="ID_predmet" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Predmets" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="ID_predmet"
+        ParameterType="Microsoft.LightSwitch:String?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'ID_predmet' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="On_line_rasporedDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Predmets">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Predmet" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="ID_predmet"
+          Nullable="False"
+          Type="nvarchar"
+          Property="Predmet/Properties[ID_predmet]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Ime"
+          Nullable="True"
+          Type="varchar"
+          Property="Predmet/Properties[Ime]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Status"
+          Nullable="True"
+          Type="varchar"
+          Property="Predmet/Properties[Status]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Nasoka"
+          Nullable="True"
+          Type="varchar"
+          Property="Predmet/Properties[Nasoka]" />
+        <SsdlProperty
+          Name="FlagPredmet"
+          Nullable="True"
+          Type="bit"
+          Property="Predmet/Properties[FlagPredmet]" />
+        <SsdlForeignKeyProperty
+          Name="ID_profesor"
+          Nullable="False"
+          Type="int"
+          PropertyName="ID_profesor" />
+        <SsdlForeignKeyProperty
+          Name="ID_semestar"
+          Nullable="False"
+          Type="int"
+          PropertyName="ID_semestar" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Aktivnost_Predmet">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Aktivnost_Predmet" />
+        <SsdlAssociationSetEnd
+          End="On_line_rasporedData/Members[FK_Aktivnost_Predmet]/Members[Predmet]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID_predmet" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="On_line_rasporedData/Members[FK_Aktivnost_Predmet]/Members[Aktivnost]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID_predmet" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Izbrani_predmeti_Predmet">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Izbrani_predmeti_Predmet" />
+        <SsdlAssociationSetEnd
+          End="On_line_rasporedData/Members[FK_Izbrani_predmeti_Predmet]/Members[Predmet]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID_predmet" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="On_line_rasporedData/Members[FK_Izbrani_predmeti_Predmet]/Members[Izbrani_predmeti]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID_predmet" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>

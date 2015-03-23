@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="TipNaAktivnost">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <EntityProperty
+        Name="Ime"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <KeyProperty
+        Name="ID_tipNaAktivnost"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <NavigationProperty
+        Name="Aktivnosts"
+        Association="FK_Aktivnost_TipNaAktivnost"
+        FromEnd="TipNaAktivnost"
+        ToEnd="Aktivnost" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_Aktivnost_TipNaAktivnost">
+    <AssociationEnd
+      Name="TipNaAktivnost"
+      Multiplicity="One"
+      EntityType="TipNaAktivnost">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Aktivnost"
+      Multiplicity="Many"
+      EntityType="Aktivnost" />
+  </Association>
+  <EntityContainer
+    Name="On_line_rasporedData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="TipNaAktivnosts"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="TipNaAktivnost" />
+    <AssociationSet
+      Name="FK_Aktivnost_TipNaAktivnost"
+      Association="FK_Aktivnost_TipNaAktivnost">
+      <AssociationSetEnd
+        Name="TipNaAktivnost"
+        EntitySet="TipNaAktivnosts" />
+      <AssociationSetEnd
+        Name="Aktivnost"
+        EntitySet="Aktivnosts" />
+    </AssociationSet>
+    <QueryOperation
+      Name="TipNaAktivnosts_Single"
+      ReturnType="TipNaAktivnost">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="ID_tipNaAktivnost" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="ID_tipNaAktivnost" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="TipNaAktivnosts" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="ID_tipNaAktivnost"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'ID_tipNaAktivnost' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="TipNaAktivnosts_SingleOrDefault"
+      ReturnType="TipNaAktivnost">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="ID_tipNaAktivnost" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="ID_tipNaAktivnost" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="TipNaAktivnosts" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="ID_tipNaAktivnost"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'ID_tipNaAktivnost' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="On_line_rasporedDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="TipNaAktivnosts">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="TipNaAktivnost" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Ime"
+          Nullable="True"
+          Type="varchar"
+          Property="TipNaAktivnost/Properties[Ime]" />
+        <SsdlProperty
+          Name="ID_tipNaAktivnost"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="TipNaAktivnost/Properties[ID_tipNaAktivnost]" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Aktivnost_TipNaAktivnost">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Aktivnost_TipNaAktivnost" />
+        <SsdlAssociationSetEnd
+          End="On_line_rasporedData/Members[FK_Aktivnost_TipNaAktivnost]/Members[TipNaAktivnost]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID_tipNaAktivnost" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="On_line_rasporedData/Members[FK_Aktivnost_TipNaAktivnost]/Members[Aktivnost]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID_TipNaAktivnost" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>

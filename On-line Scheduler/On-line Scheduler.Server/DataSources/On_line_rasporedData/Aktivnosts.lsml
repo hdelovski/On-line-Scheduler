@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="Aktivnost">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <EntityProperty
+        Name="Vreme_pocetok"
+        PropertyType=":TimeSpan?">
+        <EntityProperty.Attributes>
+          <DateTimeConstraint
+            Precision="7"
+            PreserveSeconds="True" />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Vreme_kraj"
+        PropertyType=":TimeSpan?">
+        <EntityProperty.Attributes>
+          <DateTimeConstraint
+            Precision="7"
+            PreserveSeconds="True" />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Den"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <KeyProperty
+        Name="ID_aktivnost"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <NavigationProperty
+        Name="Predmet"
+        Association="FK_Aktivnost_Predmet"
+        FromEnd="Aktivnost"
+        ToEnd="Predmet" />
+      <NavigationProperty
+        Name="Profesor"
+        Association="FK_Aktivnost_Profesor"
+        FromEnd="Aktivnost"
+        ToEnd="Profesor" />
+      <NavigationProperty
+        Name="Prostorija"
+        Association="FK_Aktivnost_Prostorija"
+        FromEnd="Aktivnost"
+        ToEnd="Prostorija" />
+      <NavigationProperty
+        Name="TipNaAktivnost"
+        Association="FK_Aktivnost_TipNaAktivnost"
+        FromEnd="Aktivnost"
+        ToEnd="TipNaAktivnost" />
+    </EntityType.Properties>
+  </EntityType>
+  <EntityContainer
+    Name="On_line_rasporedData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Aktivnosts"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Aktivnost" />
+    <QueryOperation
+      Name="Aktivnosts_Single"
+      ReturnType="Aktivnost">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="ID_aktivnost" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="ID_aktivnost" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Aktivnosts" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="ID_aktivnost"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'ID_aktivnost' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Aktivnosts_SingleOrDefault"
+      ReturnType="Aktivnost">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="ID_aktivnost" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="ID_aktivnost" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Aktivnosts" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="ID_aktivnost"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'ID_aktivnost' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="On_line_rasporedDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Aktivnosts">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Aktivnost" />
+        <SsdlProperty
+          Name="Vreme_pocetok"
+          Nullable="True"
+          Type="time"
+          Property="Aktivnost/Properties[Vreme_pocetok]" />
+        <SsdlProperty
+          Name="Vreme_kraj"
+          Nullable="True"
+          Type="time"
+          Property="Aktivnost/Properties[Vreme_kraj]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Den"
+          Nullable="True"
+          Type="varchar"
+          Property="Aktivnost/Properties[Den]" />
+        <SsdlProperty
+          Name="ID_aktivnost"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="Aktivnost/Properties[ID_aktivnost]" />
+        <SsdlForeignKeyProperty
+          MaxLength="50"
+          Name="ID_predmet"
+          Nullable="False"
+          Type="nvarchar"
+          PropertyName="ID_predmet" />
+        <SsdlForeignKeyProperty
+          Name="ID_profesor"
+          Nullable="False"
+          Type="int"
+          PropertyName="ID_profesor" />
+        <SsdlForeignKeyProperty
+          Name="ID_prostorija"
+          Nullable="False"
+          Type="int"
+          PropertyName="ID_prostorija" />
+        <SsdlForeignKeyProperty
+          Name="ID_TipNaAktivnost"
+          Nullable="False"
+          Type="int"
+          PropertyName="ID_TipNaAktivnost" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+  </DataService>
+</ServiceApplication>

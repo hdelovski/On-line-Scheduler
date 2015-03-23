@@ -1,0 +1,373 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="Profesor">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <EntityProperty
+        Name="Br_kabinet"
+        PropertyType=":Int32?">
+        <EntityProperty.Attributes>
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Korisnicko_ime"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Lozinka"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Ime"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Prezime"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Titula"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Email"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Telefon"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <KeyProperty
+        Name="ID_profesor"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="FlagProfesor"
+        PropertyType=":Boolean?">
+        <EntityProperty.Attributes>
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="Aktivnosts"
+        Association="FK_Aktivnost_Profesor"
+        FromEnd="Profesor"
+        ToEnd="Aktivnost" />
+      <NavigationProperty
+        Name="Predmets"
+        Association="FK_Predmet_Profesor"
+        FromEnd="Profesor"
+        ToEnd="Predmet" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_Aktivnost_Profesor">
+    <AssociationEnd
+      Name="Profesor"
+      Multiplicity="One"
+      EntityType="Profesor">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Aktivnost"
+      Multiplicity="Many"
+      EntityType="Aktivnost" />
+  </Association>
+  <Association
+    Name="FK_Predmet_Profesor">
+    <AssociationEnd
+      Name="Profesor"
+      Multiplicity="One"
+      EntityType="Profesor">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Predmet"
+      Multiplicity="Many"
+      EntityType="Predmet" />
+  </Association>
+  <EntityContainer
+    Name="On_line_rasporedData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Profesors"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Profesor" />
+    <AssociationSet
+      Name="FK_Aktivnost_Profesor"
+      Association="FK_Aktivnost_Profesor">
+      <AssociationSetEnd
+        Name="Profesor"
+        EntitySet="Profesors" />
+      <AssociationSetEnd
+        Name="Aktivnost"
+        EntitySet="Aktivnosts" />
+    </AssociationSet>
+    <AssociationSet
+      Name="FK_Predmet_Profesor"
+      Association="FK_Predmet_Profesor">
+      <AssociationSetEnd
+        Name="Profesor"
+        EntitySet="Profesors" />
+      <AssociationSetEnd
+        Name="Predmet"
+        EntitySet="Predmets" />
+    </AssociationSet>
+    <QueryOperation
+      Name="Profesors_Single"
+      ReturnType="Profesor">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="ID_profesor" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="ID_profesor" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Profesors" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="ID_profesor"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'ID_profesor' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Profesors_SingleOrDefault"
+      ReturnType="Profesor">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="ID_profesor" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="ID_profesor" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Profesors" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="ID_profesor"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'ID_profesor' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="On_line_rasporedDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Profesors">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Profesor" />
+        <SsdlProperty
+          Name="Br_kabinet"
+          Nullable="True"
+          Type="int"
+          Property="Profesor/Properties[Br_kabinet]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Korisnicko_ime"
+          Nullable="True"
+          Type="varchar"
+          Property="Profesor/Properties[Korisnicko_ime]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Lozinka"
+          Nullable="True"
+          Type="varchar"
+          Property="Profesor/Properties[Lozinka]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Ime"
+          Nullable="True"
+          Type="varchar"
+          Property="Profesor/Properties[Ime]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Prezime"
+          Nullable="True"
+          Type="varchar"
+          Property="Profesor/Properties[Prezime]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Titula"
+          Nullable="True"
+          Type="varchar"
+          Property="Profesor/Properties[Titula]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Email"
+          Nullable="True"
+          Type="varchar"
+          Property="Profesor/Properties[Email]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Telefon"
+          Nullable="True"
+          Type="varchar"
+          Property="Profesor/Properties[Telefon]" />
+        <SsdlProperty
+          Name="ID_profesor"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="Profesor/Properties[ID_profesor]" />
+        <SsdlProperty
+          Name="FlagProfesor"
+          Nullable="True"
+          Type="bit"
+          Property="Profesor/Properties[FlagProfesor]" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Aktivnost_Profesor">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Aktivnost_Profesor" />
+        <SsdlAssociationSetEnd
+          End="On_line_rasporedData/Members[FK_Aktivnost_Profesor]/Members[Profesor]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID_profesor" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="On_line_rasporedData/Members[FK_Aktivnost_Profesor]/Members[Aktivnost]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID_profesor" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Predmet_Profesor">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Predmet_Profesor" />
+        <SsdlAssociationSetEnd
+          End="On_line_rasporedData/Members[FK_Predmet_Profesor]/Members[Profesor]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID_profesor" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="On_line_rasporedData/Members[FK_Predmet_Profesor]/Members[Predmet]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID_profesor" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>

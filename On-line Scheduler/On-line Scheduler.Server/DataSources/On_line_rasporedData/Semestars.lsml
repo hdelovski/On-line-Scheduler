@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="Semestar">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="ID_semestar"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="Br_semestar"
+        PropertyType=":Int32?">
+        <EntityProperty.Attributes>
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="Predmets"
+        Association="FK_Predmet_Semestar"
+        FromEnd="Semestar"
+        ToEnd="Predmet" />
+      <NavigationProperty
+        Name="Students"
+        Association="FK_Student_Semestar"
+        FromEnd="Semestar"
+        ToEnd="Student" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_Predmet_Semestar">
+    <AssociationEnd
+      Name="Semestar"
+      Multiplicity="One"
+      EntityType="Semestar">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Predmet"
+      Multiplicity="Many"
+      EntityType="Predmet" />
+  </Association>
+  <Association
+    Name="FK_Student_Semestar">
+    <AssociationEnd
+      Name="Semestar"
+      Multiplicity="One"
+      EntityType="Semestar">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Student"
+      Multiplicity="Many"
+      EntityType="Student" />
+  </Association>
+  <EntityContainer
+    Name="On_line_rasporedData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Semestars"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Semestar" />
+    <AssociationSet
+      Name="FK_Predmet_Semestar"
+      Association="FK_Predmet_Semestar">
+      <AssociationSetEnd
+        Name="Semestar"
+        EntitySet="Semestars" />
+      <AssociationSetEnd
+        Name="Predmet"
+        EntitySet="Predmets" />
+    </AssociationSet>
+    <AssociationSet
+      Name="FK_Student_Semestar"
+      Association="FK_Student_Semestar">
+      <AssociationSetEnd
+        Name="Semestar"
+        EntitySet="Semestars" />
+      <AssociationSetEnd
+        Name="Student"
+        EntitySet="Students" />
+    </AssociationSet>
+    <QueryOperation
+      Name="Semestars_Single"
+      ReturnType="Semestar">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="ID_semestar" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="ID_semestar" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Semestars" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="ID_semestar"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'ID_semestar' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Semestars_SingleOrDefault"
+      ReturnType="Semestar">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="ID_semestar" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="ID_semestar" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Semestars" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="ID_semestar"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'ID_semestar' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="On_line_rasporedDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Semestars">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Semestar" />
+        <SsdlProperty
+          Name="ID_semestar"
+          Nullable="False"
+          Type="int"
+          Property="Semestar/Properties[ID_semestar]" />
+        <SsdlProperty
+          Name="Br_semestar"
+          Nullable="True"
+          Type="int"
+          Property="Semestar/Properties[Br_semestar]" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Predmet_Semestar">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Predmet_Semestar" />
+        <SsdlAssociationSetEnd
+          End="On_line_rasporedData/Members[FK_Predmet_Semestar]/Members[Semestar]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID_semestar" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="On_line_rasporedData/Members[FK_Predmet_Semestar]/Members[Predmet]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID_semestar" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Student_Semestar">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Student_Semestar" />
+        <SsdlAssociationSetEnd
+          End="On_line_rasporedData/Members[FK_Student_Semestar]/Members[Semestar]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID_semestar" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="On_line_rasporedData/Members[FK_Student_Semestar]/Members[Student]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID_semestar" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>

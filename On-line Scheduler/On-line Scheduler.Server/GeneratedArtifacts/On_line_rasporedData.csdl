@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" Namespace="LightSwitchApplication" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityType Name="Aktivnost">
+    <Key>
+      <PropertyRef Name="ID_aktivnost" />
+    </Key>
+    <Property Name="Vreme_pocetok" Type="Edm.Time" Precision="7" ConcurrencyMode="Fixed" />
+    <Property Name="Vreme_kraj" Type="Edm.Time" Precision="7" ConcurrencyMode="Fixed" />
+    <Property Name="Den" Type="Edm.String" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="ID_aktivnost" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_predmet" Type="Edm.String" Nullable="false" MaxLength="50" ConcurrencyMode="Fixed" />
+    <Property Name="ID_profesor" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="ID_prostorija" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="ID_TipNaAktivnost" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="Predmet" Relationship="LightSwitchApplication.FK_Aktivnost_Predmet" ToRole="Predmet" FromRole="Aktivnost" />
+    <NavigationProperty Name="Profesor" Relationship="LightSwitchApplication.FK_Aktivnost_Profesor" ToRole="Profesor" FromRole="Aktivnost" />
+    <NavigationProperty Name="Prostorija" Relationship="LightSwitchApplication.FK_Aktivnost_Prostorija" ToRole="Prostorija" FromRole="Aktivnost" />
+    <NavigationProperty Name="TipNaAktivnost" Relationship="LightSwitchApplication.FK_Aktivnost_TipNaAktivnost" ToRole="TipNaAktivnost" FromRole="Aktivnost" />
+  </EntityType>
+  <EntityType Name="Izbrani_predmeti">
+    <Key>
+      <PropertyRef Name="ID_izbraniPredmeti" />
+    </Key>
+    <Property Name="tekoven_semestar" Type="Edm.String" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="ID_izbraniPredmeti" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_predmet" Type="Edm.String" Nullable="false" MaxLength="50" ConcurrencyMode="Fixed" />
+    <Property Name="Br_indeks" Type="Edm.String" Nullable="false" MaxLength="20" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="Predmet" Relationship="LightSwitchApplication.FK_Izbrani_predmeti_Predmet" ToRole="Predmet" FromRole="Izbrani_predmeti" />
+    <NavigationProperty Name="Student" Relationship="LightSwitchApplication.FK_Izbrani_predmeti_Student" ToRole="Student" FromRole="Izbrani_predmeti" />
+  </EntityType>
+  <EntityType Name="Predmet">
+    <Key>
+      <PropertyRef Name="ID_predmet" />
+    </Key>
+    <Property Name="ID_predmet" Type="Edm.String" Nullable="false" MaxLength="50" />
+    <Property Name="Ime" Type="Edm.String" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="Status" Type="Edm.String" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="Nasoka" Type="Edm.String" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="FlagPredmet" Type="Edm.Boolean" ConcurrencyMode="Fixed" />
+    <Property Name="ID_profesor" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="ID_semestar" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="Aktivnosts" Relationship="LightSwitchApplication.FK_Aktivnost_Predmet" ToRole="Aktivnost" FromRole="Predmet" />
+    <NavigationProperty Name="Izbrani_predmetis" Relationship="LightSwitchApplication.FK_Izbrani_predmeti_Predmet" ToRole="Izbrani_predmeti" FromRole="Predmet" />
+    <NavigationProperty Name="Profesor" Relationship="LightSwitchApplication.FK_Predmet_Profesor" ToRole="Profesor" FromRole="Predmet" />
+    <NavigationProperty Name="Semestar" Relationship="LightSwitchApplication.FK_Predmet_Semestar" ToRole="Semestar" FromRole="Predmet" />
+  </EntityType>
+  <EntityType Name="Profesor">
+    <Key>
+      <PropertyRef Name="ID_profesor" />
+    </Key>
+    <Property Name="Br_kabinet" Type="Edm.Int32" ConcurrencyMode="Fixed" />
+    <Property Name="Korisnicko_ime" Type="Edm.String" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="Lozinka" Type="Edm.String" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="Ime" Type="Edm.String" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="Prezime" Type="Edm.String" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="Titula" Type="Edm.String" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="Email" Type="Edm.String" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="Telefon" Type="Edm.String" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="ID_profesor" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FlagProfesor" Type="Edm.Boolean" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="Aktivnosts" Relationship="LightSwitchApplication.FK_Aktivnost_Profesor" ToRole="Aktivnost" FromRole="Profesor" />
+    <NavigationProperty Name="Predmets" Relationship="LightSwitchApplication.FK_Predmet_Profesor" ToRole="Predmet" FromRole="Profesor" />
+  </EntityType>
+  <EntityType Name="Prostorija">
+    <Key>
+      <PropertyRef Name="ID_prostorija" />
+    </Key>
+    <Property Name="Br_prostorija" Type="Edm.Int32" ConcurrencyMode="Fixed" />
+    <Property Name="Opis" Type="Edm.String" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="ID_prostorija" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Aktivnosts" Relationship="LightSwitchApplication.FK_Aktivnost_Prostorija" ToRole="Aktivnost" FromRole="Prostorija" />
+  </EntityType>
+  <EntityType Name="Semestar">
+    <Key>
+      <PropertyRef Name="ID_semestar" />
+    </Key>
+    <Property Name="ID_semestar" Type="Edm.Int32" Nullable="false" />
+    <Property Name="Br_semestar" Type="Edm.Int32" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="Predmets" Relationship="LightSwitchApplication.FK_Predmet_Semestar" ToRole="Predmet" FromRole="Semestar" />
+    <NavigationProperty Name="Students" Relationship="LightSwitchApplication.FK_Student_Semestar" ToRole="Student" FromRole="Semestar" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="Br_indeks" />
+    </Key>
+    <Property Name="Br_indeks" Type="Edm.String" Nullable="false" MaxLength="20" />
+    <Property Name="Ime" Type="Edm.String" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="Prezime" Type="Edm.String" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="Nasoka" Type="Edm.String" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="Email" Type="Edm.String" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="Lozinka" Type="Edm.String" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="FlagStudent" Type="Edm.Boolean" ConcurrencyMode="Fixed" />
+    <Property Name="ID_semestar" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="Izbrani_predmetis" Relationship="LightSwitchApplication.FK_Izbrani_predmeti_Student" ToRole="Izbrani_predmeti" FromRole="Student" />
+    <NavigationProperty Name="Semestar" Relationship="LightSwitchApplication.FK_Student_Semestar" ToRole="Semestar" FromRole="Student" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="Edm.String" Nullable="false" MaxLength="128" ConcurrencyMode="Fixed" />
+    <Property Name="principal_id" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="diagram_id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Edm.Int32" ConcurrencyMode="Fixed" />
+    <Property Name="definition" Type="Edm.Binary" MaxLength="Max" />
+  </EntityType>
+  <EntityType Name="TipNaAktivnost">
+    <Key>
+      <PropertyRef Name="ID_tipNaAktivnost" />
+    </Key>
+    <Property Name="Ime" Type="Edm.String" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="ID_tipNaAktivnost" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Aktivnosts" Relationship="LightSwitchApplication.FK_Aktivnost_TipNaAktivnost" ToRole="Aktivnost" FromRole="TipNaAktivnost" />
+  </EntityType>
+  <Association Name="FK_Aktivnost_Predmet">
+    <End Role="Predmet" Type="LightSwitchApplication.Predmet" Multiplicity="1" />
+    <End Role="Aktivnost" Type="LightSwitchApplication.Aktivnost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Predmet">
+        <PropertyRef Name="ID_predmet" />
+      </Principal>
+      <Dependent Role="Aktivnost">
+        <PropertyRef Name="ID_predmet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Aktivnost_Profesor">
+    <End Role="Profesor" Type="LightSwitchApplication.Profesor" Multiplicity="1" />
+    <End Role="Aktivnost" Type="LightSwitchApplication.Aktivnost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profesor">
+        <PropertyRef Name="ID_profesor" />
+      </Principal>
+      <Dependent Role="Aktivnost">
+        <PropertyRef Name="ID_profesor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Aktivnost_Prostorija">
+    <End Role="Prostorija" Type="LightSwitchApplication.Prostorija" Multiplicity="1" />
+    <End Role="Aktivnost" Type="LightSwitchApplication.Aktivnost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prostorija">
+        <PropertyRef Name="ID_prostorija" />
+      </Principal>
+      <Dependent Role="Aktivnost">
+        <PropertyRef Name="ID_prostorija" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Aktivnost_TipNaAktivnost">
+    <End Role="TipNaAktivnost" Type="LightSwitchApplication.TipNaAktivnost" Multiplicity="1" />
+    <End Role="Aktivnost" Type="LightSwitchApplication.Aktivnost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipNaAktivnost">
+        <PropertyRef Name="ID_tipNaAktivnost" />
+      </Principal>
+      <Dependent Role="Aktivnost">
+        <PropertyRef Name="ID_TipNaAktivnost" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Izbrani_predmeti_Predmet">
+    <End Role="Predmet" Type="LightSwitchApplication.Predmet" Multiplicity="1" />
+    <End Role="Izbrani_predmeti" Type="LightSwitchApplication.Izbrani_predmeti" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Predmet">
+        <PropertyRef Name="ID_predmet" />
+      </Principal>
+      <Dependent Role="Izbrani_predmeti">
+        <PropertyRef Name="ID_predmet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Izbrani_predmeti_Student">
+    <End Role="Student" Type="LightSwitchApplication.Student" Multiplicity="1" />
+    <End Role="Izbrani_predmeti" Type="LightSwitchApplication.Izbrani_predmeti" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Br_indeks" />
+      </Principal>
+      <Dependent Role="Izbrani_predmeti">
+        <PropertyRef Name="Br_indeks" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Predmet_Profesor">
+    <End Role="Profesor" Type="LightSwitchApplication.Profesor" Multiplicity="1" />
+    <End Role="Predmet" Type="LightSwitchApplication.Predmet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profesor">
+        <PropertyRef Name="ID_profesor" />
+      </Principal>
+      <Dependent Role="Predmet">
+        <PropertyRef Name="ID_profesor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Predmet_Semestar">
+    <End Role="Semestar" Type="LightSwitchApplication.Semestar" Multiplicity="1" />
+    <End Role="Predmet" Type="LightSwitchApplication.Predmet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Semestar">
+        <PropertyRef Name="ID_semestar" />
+      </Principal>
+      <Dependent Role="Predmet">
+        <PropertyRef Name="ID_semestar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Semestar">
+    <End Role="Semestar" Type="LightSwitchApplication.Semestar" Multiplicity="1" />
+    <End Role="Student" Type="LightSwitchApplication.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Semestar">
+        <PropertyRef Name="ID_semestar" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="ID_semestar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="On_line_rasporedData" m:IsDefaultEntityContainer="true">
+    <EntitySet Name="Aktivnosts" EntityType="LightSwitchApplication.Aktivnost" />
+    <EntitySet Name="Izbrani_predmetis" EntityType="LightSwitchApplication.Izbrani_predmeti" />
+    <EntitySet Name="Predmets" EntityType="LightSwitchApplication.Predmet" />
+    <EntitySet Name="Profesors" EntityType="LightSwitchApplication.Profesor" />
+    <EntitySet Name="Prostorijas" EntityType="LightSwitchApplication.Prostorija" />
+    <EntitySet Name="Semestars" EntityType="LightSwitchApplication.Semestar" />
+    <EntitySet Name="Students" EntityType="LightSwitchApplication.Student" />
+    <EntitySet Name="sysdiagrams" EntityType="LightSwitchApplication.sysdiagram" />
+    <EntitySet Name="TipNaAktivnosts" EntityType="LightSwitchApplication.TipNaAktivnost" />
+    <AssociationSet Name="FK_Aktivnost_Predmet" Association="LightSwitchApplication.FK_Aktivnost_Predmet">
+      <End Role="Predmet" EntitySet="Predmets" />
+      <End Role="Aktivnost" EntitySet="Aktivnosts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Aktivnost_Profesor" Association="LightSwitchApplication.FK_Aktivnost_Profesor">
+      <End Role="Profesor" EntitySet="Profesors" />
+      <End Role="Aktivnost" EntitySet="Aktivnosts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Aktivnost_Prostorija" Association="LightSwitchApplication.FK_Aktivnost_Prostorija">
+      <End Role="Prostorija" EntitySet="Prostorijas" />
+      <End Role="Aktivnost" EntitySet="Aktivnosts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Aktivnost_TipNaAktivnost" Association="LightSwitchApplication.FK_Aktivnost_TipNaAktivnost">
+      <End Role="TipNaAktivnost" EntitySet="TipNaAktivnosts" />
+      <End Role="Aktivnost" EntitySet="Aktivnosts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Izbrani_predmeti_Predmet" Association="LightSwitchApplication.FK_Izbrani_predmeti_Predmet">
+      <End Role="Predmet" EntitySet="Predmets" />
+      <End Role="Izbrani_predmeti" EntitySet="Izbrani_predmetis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Izbrani_predmeti_Student" Association="LightSwitchApplication.FK_Izbrani_predmeti_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Izbrani_predmeti" EntitySet="Izbrani_predmetis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Predmet_Profesor" Association="LightSwitchApplication.FK_Predmet_Profesor">
+      <End Role="Profesor" EntitySet="Profesors" />
+      <End Role="Predmet" EntitySet="Predmets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Predmet_Semestar" Association="LightSwitchApplication.FK_Predmet_Semestar">
+      <End Role="Semestar" EntitySet="Semestars" />
+      <End Role="Predmet" EntitySet="Predmets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Semestar" Association="LightSwitchApplication.FK_Student_Semestar">
+      <End Role="Semestar" EntitySet="Semestars" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

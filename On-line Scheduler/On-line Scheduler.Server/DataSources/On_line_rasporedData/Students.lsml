@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="Student">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Br_indeks"
+        PropertyType=":String">
+        <KeyProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="20" />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="Ime"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Prezime"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Nasoka"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Email"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Lozinka"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="FlagStudent"
+        PropertyType=":Boolean?">
+        <EntityProperty.Attributes>
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="Izbrani_predmetis"
+        Association="FK_Izbrani_predmeti_Student"
+        FromEnd="Student"
+        ToEnd="Izbrani_predmeti" />
+      <NavigationProperty
+        Name="Semestar"
+        Association="FK_Student_Semestar"
+        FromEnd="Student"
+        ToEnd="Semestar" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_Izbrani_predmeti_Student">
+    <AssociationEnd
+      Name="Student"
+      Multiplicity="One"
+      EntityType="Student">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Izbrani_predmeti"
+      Multiplicity="Many"
+      EntityType="Izbrani_predmeti" />
+  </Association>
+  <EntityContainer
+    Name="On_line_rasporedData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Students"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Student" />
+    <AssociationSet
+      Name="FK_Izbrani_predmeti_Student"
+      Association="FK_Izbrani_predmeti_Student">
+      <AssociationSetEnd
+        Name="Student"
+        EntitySet="Students" />
+      <AssociationSetEnd
+        Name="Izbrani_predmeti"
+        EntitySet="Izbrani_predmetis" />
+    </AssociationSet>
+    <QueryOperation
+      Name="Students_Single"
+      ReturnType="Student">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Br_indeks" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Br_indeks" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Students" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Br_indeks"
+        ParameterType="Microsoft.LightSwitch:String?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Br_indeks' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Students_SingleOrDefault"
+      ReturnType="Student">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Br_indeks" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Br_indeks" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Students" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Br_indeks"
+        ParameterType="Microsoft.LightSwitch:String?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Br_indeks' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="On_line_rasporedDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Students">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Student" />
+        <SsdlProperty
+          MaxLength="20"
+          Name="Br_indeks"
+          Nullable="False"
+          Type="nvarchar"
+          Property="Student/Properties[Br_indeks]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Ime"
+          Nullable="True"
+          Type="varchar"
+          Property="Student/Properties[Ime]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Prezime"
+          Nullable="True"
+          Type="varchar"
+          Property="Student/Properties[Prezime]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Nasoka"
+          Nullable="True"
+          Type="varchar"
+          Property="Student/Properties[Nasoka]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Email"
+          Nullable="True"
+          Type="varchar"
+          Property="Student/Properties[Email]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Lozinka"
+          Nullable="True"
+          Type="varchar"
+          Property="Student/Properties[Lozinka]" />
+        <SsdlProperty
+          Name="FlagStudent"
+          Nullable="True"
+          Type="bit"
+          Property="Student/Properties[FlagStudent]" />
+        <SsdlForeignKeyProperty
+          Name="ID_semestar"
+          Nullable="False"
+          Type="int"
+          PropertyName="ID_semestar" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Izbrani_predmeti_Student">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Izbrani_predmeti_Student" />
+        <SsdlAssociationSetEnd
+          End="On_line_rasporedData/Members[FK_Izbrani_predmeti_Student]/Members[Student]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Br_indeks" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="On_line_rasporedData/Members[FK_Izbrani_predmeti_Student]/Members[Izbrani_predmeti]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Br_indeks" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>

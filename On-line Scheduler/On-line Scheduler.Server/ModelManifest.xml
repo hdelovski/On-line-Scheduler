@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<ModelDocumentManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Documents>
+    <Document FullPath="c:\users\borche\documents\visual studio 2013\Projects\On-line Scheduler\On-line Scheduler\On-line Scheduler.Server\Properties\Service.lsml" Checksum="89EED78A94F6E7E45519E873A3B83BBF96EDCA3233387A02C9F7C67B75D4F402" />
+    <Document FullPath="c:\users\borche\documents\visual studio 2013\Projects\On-line Scheduler\On-line Scheduler\On-line Scheduler.Server\DataSources\On_line_rasporedData\Aktivnosts.lsml" Checksum="E63D9CD86B19AAAA8B01EDC8E9AE30B87346A84CE0B6322A54B51945BB15D598" />
+    <Document FullPath="c:\users\borche\documents\visual studio 2013\Projects\On-line Scheduler\On-line Scheduler\On-line Scheduler.Server\DataSources\On_line_rasporedData\Izbrani_predmetis.lsml" Checksum="E8FD3B1D7811976B5A565AF607CE64C309DFCCA23451739113EED4EB0120A741" />
+    <Document FullPath="c:\users\borche\documents\visual studio 2013\Projects\On-line Scheduler\On-line Scheduler\On-line Scheduler.Server\DataSources\On_line_rasporedData\Predmets.lsml" Checksum="426603B1713CB46E9DCA4E70D22CB918DB4D804B5B36FF25250145FAB0216CF1" />
+    <Document FullPath="c:\users\borche\documents\visual studio 2013\Projects\On-line Scheduler\On-line Scheduler\On-line Scheduler.Server\DataSources\On_line_rasporedData\Profesors.lsml" Checksum="0BF52AC97919D3FF8AA3D46782A5D1F9900C7263CA16574D8F33E3B549DA14A1" />
+    <Document FullPath="c:\users\borche\documents\visual studio 2013\Projects\On-line Scheduler\On-line Scheduler\On-line Scheduler.Server\DataSources\On_line_rasporedData\Prostorijas.lsml" Checksum="67856CCE7FBA75BAF346F2C69A05994D68627027E122126A71ED8DA3A5F4CA23" />
+    <Document FullPath="c:\users\borche\documents\visual studio 2013\Projects\On-line Scheduler\On-line Scheduler\On-line Scheduler.Server\DataSources\On_line_rasporedData\Semestars.lsml" Checksum="98368ACF35D4CE1E2E8506B1674F12826AC4B48A46BCC5505526D8C9A8EAA9B6" />
+    <Document FullPath="c:\users\borche\documents\visual studio 2013\Projects\On-line Scheduler\On-line Scheduler\On-line Scheduler.Server\DataSources\On_line_rasporedData\Students.lsml" Checksum="801AE0E805E975F61F37DC9ECE3248BECB79E081130A3CBBB4A24613E0047F4A" />
+    <Document FullPath="c:\users\borche\documents\visual studio 2013\Projects\On-line Scheduler\On-line Scheduler\On-line Scheduler.Server\DataSources\On_line_rasporedData\sysdiagrams.lsml" Checksum="E7AAD13D64FDF5E4065CCB0BCB40892BAC0CEBFB4D96C716206302A970B721D1" />
+    <Document FullPath="c:\users\borche\documents\visual studio 2013\Projects\On-line Scheduler\On-line Scheduler\On-line Scheduler.Server\DataSources\On_line_rasporedData\TipNaAktivnosts.lsml" Checksum="5297566C48F30F8D7BAAEDD89708DDE8B4711A42C04818D810BAF901D04A88D0" />
+    <Document FullPath="c:\users\borche\documents\visual studio 2013\Projects\On-line Scheduler\On-line Scheduler\On-line Scheduler.Server\Properties\DataSources\On_line_rasporedData.lsml" Checksum="1684F8A7E2A27DCED83863C5CF99648C9604DE1F0E938CDF7F109C61BDAAD6B3" />
+  </Documents>
+</ModelDocumentManifest>
